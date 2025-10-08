@@ -1,0 +1,117 @@
+en:
+  requests/statuses: &statuses
+    label: &label Statuses
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Status
+      create: Create Status
+      edit: Edit Status
+      update: Update Status
+      destroy: Remove Status
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{status_name}? This will also remove any child resources and can't be undone.
+    status:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Status ID
+      team_id:
+        heading: Team ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+        api_title: *name
+        api_description: *name
+      slug:
+        _: &slug Slug
+        label: *slug
+        heading: *slug
+        api_title: *slug
+        api_description: *slug
+      color:
+        _: &color Color
+        label: *color
+        heading: *color
+        api_title: *color
+        api_description: *color
+        options:
+          - '#9C73D2'
+          - '#48CDFE'
+          - '#53F3ED'
+          - '#47E37F'
+          - '#F2593D'
+          - '#F68421'
+          - '#F9DE00'
+          - '#929292'
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Statuses"
+      index: "List Statuses"
+      create: "Add a New Status"
+      member_actions: "Actions for an Individual Status"
+      show: "Retrieve a Status"
+      update: "Update a Status"
+      destroy: "Delete a Status"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} Statuses"
+      contexts:
+        team:
+          header: Statuses
+          description: Below is a list of Statuses that have been added for %{team_name}.
+          description_empty: No Statuses have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{status_name}"
+      header: Status Details
+      description: Below are the details we have for %{status_name}.
+      manage_description: You'll also find options for updating these details or removing %{status_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Status for %{team_name}"
+      header: New Status Details
+      description: Please provide the details of the new Status you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{status_name}"
+      header: Edit Status Details
+      description: You can update the details or settings for %{status_name} below.
+      form: *form
+    notifications:
+      created: Status was successfully created.
+      updated: Status was successfully updated.
+      destroyed: Status was successfully destroyed.
+  account:
+    requests:
+      statuses: *statuses
+  activerecord:
+    attributes:
+      requests/status:
+        name: *name
+        slug: *slug
+        color: *color
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

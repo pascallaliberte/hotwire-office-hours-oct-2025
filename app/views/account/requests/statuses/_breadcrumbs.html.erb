@@ -1,0 +1,8 @@
+<% status ||= @status %>
+<% team ||= @team || status&.team %>
+<%= render 'account/teams/breadcrumbs', team: team %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, team, :requests_statuses] %>
+<% if status&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: status.label_string, url: [:account, status] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'requests/statuses' %>

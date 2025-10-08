@@ -1,0 +1,28 @@
+<% team = @team || @team %>
+<% context ||= team %>
+<% collection ||= :requests_statuses %>
+<% hide_actions ||= false %>
+<% hide_back ||= false %>
+
+<% with_attribute_settings object: status do %>
+  <tr data-id="<%= status.id %>">
+    <td data-sortable-target="handle" class="cursor-grab active:cursor-grabbing"><i class="ti ti-menu opacity-25 group-hover:opacity-100"></i></td>
+    <%= render "shared/tables/checkbox", object: status %>
+    <td><%= render 'shared/attributes/text', attribute: :name, url: [:account, status] %></td>
+    <td><%= render 'shared/attributes/text', attribute: :slug %></td>
+    <td><%= render 'shared/attributes/code', attribute: :color %></td>
+    <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+    <td class="buttons">
+      <% unless hide_actions %>
+        <% if can? :edit, status %>
+          <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, status], class: 'button-secondary button-smaller' %>
+        <% end %>
+        <% if can? :destroy, status %>
+          <%= button_to t('.buttons.shorthand.destroy'), [:account, status], method: :delete, data: { turbo_confirm: t('.buttons.confirmations.destroy', model_locales(status)) }, class: 'button-secondary button-smaller' %>
+        <% end %>
+        <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

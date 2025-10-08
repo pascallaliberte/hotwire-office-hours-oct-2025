@@ -75,6 +75,9 @@ Rails.application.routes.draw do
 
         resources :customers
         resources :requests
+        namespace :requests do
+          resources :statuses, concerns: [:sortable]
+        end
       end
     end
   end

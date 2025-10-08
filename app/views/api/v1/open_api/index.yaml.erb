@@ -24,6 +24,7 @@ components:
     <%= automatic_components_for Scaffolding::CompletelyConcrete::TangibleThing unless scaffolding_things_disabled? %>
     <%= automatic_components_for Customer %>
     <%= automatic_components_for Request %>
+    <%= automatic_components_for Requests::Status %>
     <%# 🚅 super scaffolding will insert new components above this line. %>
   parameters:
     id:
@@ -60,4 +61,5 @@ paths:
   <%= automatic_paths_for Scaffolding::CompletelyConcrete::TangibleThing, Scaffolding::AbsolutelyAbstract::CreativeConcept unless scaffolding_things_disabled? %>
   <%= automatic_paths_for Customer, Team %>
   <%= automatic_paths_for Request, Team %>
+  <%= automatic_paths_for Requests::Status, Team %>
   <%# 🚅 super scaffolding will insert new paths above this line. %>

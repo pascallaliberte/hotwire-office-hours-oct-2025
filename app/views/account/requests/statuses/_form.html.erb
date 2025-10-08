@@ -1,0 +1,19 @@
+<% cancel_path ||= status.persisted? ? [:account, status] : [:account, @team, :requests_statuses] %>
+
+<%= form_with model: status, url: (status.persisted? ? [:account, status] : [:account, @team, :requests_statuses]), class: 'form' do |form| %>
+  <%= render "shared/limits/form", form: form, cancel_path: cancel_path do %>
+    <%= render 'account/shared/forms/errors', form: form %>
+
+    <% with_field_settings form: form do %>
+      <%= render 'shared/fields/text_field', method: :name, options: {autofocus: true} %>
+      <%= render 'shared/fields/text_field', method: :slug %>
+      <%= render 'shared/fields/color_picker', method: :color, color_picker_field_options: t('requests/statuses.fields.color.options') %>
+      <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <% end %>
+
+    <div class="buttons">
+      <%= form.submit (form.object.persisted? ? t('.buttons.update') : t('.buttons.create')), class: "button" %>
+      <%= link_to t('global.buttons.cancel'), cancel_path, class: "button-secondary" %>
+    </div>
+  <% end %>
+<% end %>
