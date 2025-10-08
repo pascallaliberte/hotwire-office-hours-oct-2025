@@ -65,6 +65,8 @@ en:
           header: Requests
           description: Below is a list of Requests that have been added for %{team_name}.
           description_empty: No Requests have been added for %{team_name}.
+      filters:
+        all: All
       fields: *fields
       buttons: *buttons
     show:

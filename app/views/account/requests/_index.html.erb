@@ -5,6 +5,16 @@
 <% hide_actions ||= false %>
 <% hide_back ||= false %>
 
+<% 
+  # Filter by status if param is present and valid
+  if params[:requests_status_id].present?
+    valid_status_ids = team.requests_statuses.pluck(:id).map(&:to_s)
+    if valid_status_ids.include?(params[:requests_status_id].to_s)
+      requests = requests.where(status_id: params[:requests_status_id])
+    end
+  end
+%>
+
 <% pagy ||= nil %>
 <% pagy, requests = pagy(requests.updated_recently, page_param: :requests_page) unless pagy %>
 
@@ -18,6 +28,37 @@
       <% end %>
 
       <% box.table do %>
+        <!-- Status Filter Buttons -->
+        <% if team.requests_statuses.any? %>
+          <div class="overflow-x-auto px-8 mb-6">
+            <div class="flex gap-3 pb-2 min-w-max">
+              <!-- All Requests Button -->
+              <% 
+                all_count = team.requests.accessible_by(current_ability).count
+                is_all_selected = params[:requests_status_id].blank?
+              %>
+              <%= link_to [:account, team, :requests], 
+                class: "flex flex-col items-center justify-center px-4 py-3 rounded-lg border-2 transition-all min-w-[120px] #{is_all_selected ? 'bg-blue-100 border-blue-500 text-blue-700' : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'}" do %>
+                <span class="text-sm font-semibold"><%= t('.filters.all') %></span>
+                <span class="mt-1 text-xl font-bold"><%= all_count %></span>
+              <% end %>
+              
+              <!-- Status Filter Buttons -->
+              <% team.requests_statuses.each do |status| %>
+                <% 
+                  status_count = team.requests.accessible_by(current_ability).where(status_id: status.id).count
+                  is_selected = params[:requests_status_id].to_s == status.id.to_s
+                %>
+                <%= link_to [:account, team, :requests, requests_status_id: status.id], 
+                  class: "flex flex-col items-center justify-center px-4 py-3 rounded-lg border-2 transition-all min-w-[120px] #{is_selected ? 'bg-blue-100 border-blue-500 text-blue-700' : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'}" do %>
+                  <span class="text-sm font-semibold"><%= status.name %></span>
+                  <span class="mt-1 text-xl font-bold"><%= status_count %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        
         <% if requests.any? %>
           <table class="table">
             <thead>
