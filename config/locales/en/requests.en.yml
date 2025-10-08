@@ -22,7 +22,7 @@ en:
       buttons: *buttons
     fields: &fields
       id:
-        heading: Request ID
+        heading: ID
       team_id:
         heading: Team ID
       customer_id: &customer
