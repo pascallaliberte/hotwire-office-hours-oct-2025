@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_08_140404) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_08_142107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -201,6 +201,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_08_140404) do
     t.index ["team_id"], name: "index_requests_on_team_id"
   end
 
+  create_table "requests_statuses", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.integer "sort_order"
+    t.string "name"
+    t.string "slug"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_requests_statuses_on_team_id"
+  end
+
   create_table "scaffolding_absolutely_abstract_creative_concepts", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.string "name"
@@ -385,6 +396,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_08_140404) do
   add_foreign_key "oauth_stripe_accounts", "users"
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "teams"
+  add_foreign_key "requests_statuses", "teams"
   add_foreign_key "scaffolding_absolutely_abstract_creative_concepts", "teams"
   add_foreign_key "scaffolding_completely_concrete_tangible_things", "scaffolding_absolutely_abstract_creative_concepts", column: "absolutely_abstract_creative_concept_id"
   add_foreign_key "scaffolding_completely_concrete_tangible_things_assignments", "memberships"
