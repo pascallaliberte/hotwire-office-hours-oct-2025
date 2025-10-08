@@ -38,7 +38,7 @@
                 is_all_selected = params[:requests_status_id].blank?
               %>
               <%= link_to [:account, team, :requests], 
-                class: "flex flex-col items-center justify-center px-4 py-3 rounded-lg border-2 transition-all min-w-[120px] #{is_all_selected ? 'bg-blue-100 border-blue-500 text-blue-700' : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'}" do %>
+                class: "flex flex-col items-center justify-center px-4 py-3 rounded-lg border-2 transition-all min-w-[120px] #{is_all_selected ? 'bg-blue-100 border-blue-500 text-blue-700' : 'bg-white/50 border-gray-300 text-gray-700 hover:border-gray-400'}" do %>
                 <span class="text-sm font-semibold"><%= t('.filters.all') %></span>
                 <span class="mt-1 text-xl font-bold"><%= all_count %></span>
               <% end %>
@@ -50,7 +50,7 @@
                   is_selected = params[:requests_status_id].to_s == status.id.to_s
                 %>
                 <%= link_to [:account, team, :requests, requests_status_id: status.id], 
-                  class: "flex flex-col items-center justify-center px-4 py-3 rounded-lg border-2 transition-all min-w-[120px] #{is_selected ? 'bg-blue-100 border-blue-500 text-blue-700' : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'}" do %>
+                  class: "flex flex-col items-center justify-center px-4 py-3 rounded-lg border-2 transition-all min-w-[120px] #{is_selected ? 'bg-blue-100 border-blue-500 text-blue-700' : 'bg-white/50 border-gray-300 text-gray-700 hover:border-gray-400'}" do %>
                   <span class="text-sm font-semibold"><%= status.name %></span>
                   <span class="mt-1 text-xl font-bold"><%= status_count %></span>
                 <% end %>
