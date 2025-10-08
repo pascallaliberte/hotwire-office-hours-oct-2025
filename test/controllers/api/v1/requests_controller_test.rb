@@ -30,6 +30,7 @@ class Api::V1::RequestsControllerTest < Api::Test
     request = Request.find(request_data["id"])
 
     assert_equal_or_nil request_data['customer_id'], request.customer_id
+    assert_equal_or_nil request_data['status_id'], request.status_id
     # 🚅 super scaffolding will insert new fields above this line.
 
     assert_equal request_data["team_id"], request.team_id

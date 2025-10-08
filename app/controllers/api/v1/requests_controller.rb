@@ -45,6 +45,7 @@ if defined?(Api::V1::ApplicationController)
         strong_params = params.require(:request).permit(
           *permitted_fields,
           :customer_id,
+          :status_id,
           # 🚅 super scaffolding will insert new fields above this line.
           *permitted_arrays,
           # 🚅 super scaffolding will insert new arrays above this line.

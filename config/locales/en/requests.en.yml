@@ -33,6 +33,13 @@ en:
         api_description: *customer_id
         placeholder: Select
       customer: *customer
+      status_id: &status
+        _: &status_id Status
+        label: *status_id
+        heading: *status_id
+        api_title: *status_id
+        api_description: *status_id
+      status: *status
       # 🚅 super scaffolding will insert new fields above this line.
       created_at:
         _: &created_at Added
@@ -90,6 +97,7 @@ en:
     attributes:
       request:
         customer_id: *customer_id
+        status_id: *status_id
         # 🚅 super scaffolding will insert new activerecord attributes above this line.
         created_at: *created_at
         updated_at: *updated_at
