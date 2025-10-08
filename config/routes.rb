@@ -74,6 +74,7 @@ Rails.application.routes.draw do
         end
 
         resources :customers
+        resources :requests
       end
     end
   end
