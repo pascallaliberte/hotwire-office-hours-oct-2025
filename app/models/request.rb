@@ -21,9 +21,7 @@ class Request < ApplicationRecord
   # 🚅 add delegations above.
 
   def valid_customers
-    raise "please review and implement `valid_customers` in `app/models/request.rb`."
-    # please specify what objects should be considered valid for assigning to `customer`.
-    # the resulting code should probably look something like `team.customers`.
+    team.customers
   end
 
   # 🚅 add methods above.
