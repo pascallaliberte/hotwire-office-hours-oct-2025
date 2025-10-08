@@ -1,5 +1,6 @@
 default:
   models:
+    Request: read
     Customer: read
     Team: read
     Membership:
@@ -29,6 +30,7 @@ admin:
     - admin
     - editor
   models:
+    Request: manage
     Customer: manage
     Team: manage
     Membership: manage
