@@ -12,6 +12,7 @@
         <% box.body do %>
           <% with_attribute_settings object: @request, strategy: :label do %>
             <%= render 'shared/attributes/belongs_to', attribute: :customer %>
+            <%= render 'shared/attributes/belongs_to', attribute: :status %>
             <%# 🚅 super scaffolding will insert new fields above this line. %>
           <% end %>
         <% end %>

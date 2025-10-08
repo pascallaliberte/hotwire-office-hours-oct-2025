@@ -8,6 +8,7 @@
   <tr data-id="<%= request.id %>">
     <%= render "shared/tables/checkbox", object: request %>
     <td><%= render 'shared/attributes/belongs_to', attribute: :customer, url: [:account, request] %></td>
+    <td><%= render 'shared/attributes/belongs_to', attribute: :status %></td>
     <%# 🚅 super scaffolding will insert new fields above this line. %>
     <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
     <td class="buttons">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_08_142107) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_08_142811) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -197,7 +197,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_08_142107) do
     t.bigint "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "status_id"
     t.index ["customer_id"], name: "index_requests_on_customer_id"
+    t.index ["status_id"], name: "index_requests_on_status_id"
     t.index ["team_id"], name: "index_requests_on_team_id"
   end
 
@@ -395,6 +397,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_08_142107) do
   add_foreign_key "oauth_applications", "teams"
   add_foreign_key "oauth_stripe_accounts", "users"
   add_foreign_key "requests", "customers"
+  add_foreign_key "requests", "requests_statuses", column: "status_id"
   add_foreign_key "requests", "teams"
   add_foreign_key "requests_statuses", "teams"
   add_foreign_key "scaffolding_absolutely_abstract_creative_concepts", "teams"

@@ -7,6 +7,8 @@
     <% with_field_settings form: form do %>
       <%= render 'shared/fields/super_select', method: :customer_id, options: {autofocus: true}, html_options: {autofocus: true},
         choices: @request.valid_customers.map { |customer| [customer.label_string, customer.id] } %>
+      <%= render 'shared/fields/options', method: :status_id,
+        options: @request.valid_statuses.map { |status| [status.id, status.label_string] } %>
       <%# 🚅 super scaffolding will insert new fields above this line. %>
     <% end %>
 
