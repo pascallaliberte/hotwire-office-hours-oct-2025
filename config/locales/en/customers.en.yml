@@ -1,0 +1,93 @@
+en:
+  customers: &customers
+    label: &label Customers
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: ti ti-id-badge
+    buttons: &buttons
+      new: Add New Customer
+      create: Create Customer
+      edit: Edit Customer
+      update: Update Customer
+      destroy: Remove Customer
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{customer_name}? This will also remove any child resources and can't be undone.
+    customer:
+      buttons: *buttons
+    fields: &fields
+      id:
+        heading: Customer ID
+      team_id:
+        heading: Team ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+        api_title: *name
+        api_description: *name
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Customers"
+      index: "List Customers"
+      create: "Add a New Customer"
+      member_actions: "Actions for an Individual Customer"
+      show: "Retrieve a Customer"
+      update: "Update a Customer"
+      destroy: "Delete a Customer"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} Customers"
+      contexts:
+        team:
+          header: Customers
+          description: Below is a list of Customers that have been added for %{team_name}.
+          description_empty: No Customers have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{customer_name}"
+      header: Customer Details
+      description: Below are the details we have for %{customer_name}.
+      manage_description: You'll also find options for updating these details or removing %{customer_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Customer for %{team_name}"
+      header: New Customer Details
+      description: Please provide the details of the new Customer you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{customer_name}"
+      header: Edit Customer Details
+      description: You can update the details or settings for %{customer_name} below.
+      form: *form
+    notifications:
+      created: Customer was successfully created.
+      updated: Customer was successfully updated.
+      destroyed: Customer was successfully destroyed.
+  account:
+    customers: *customers
+  activerecord:
+    attributes:
+      customer:
+        name: *name
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

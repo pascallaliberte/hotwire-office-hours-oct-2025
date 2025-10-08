@@ -1,0 +1,8 @@
+<% customer ||= @customer %>
+<% team ||= @team || customer&.team %>
+<%= render 'account/teams/breadcrumbs', team: team %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, team, :customers] %>
+<% if customer&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: customer.label_string, url: [:account, customer] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'customers' %>
