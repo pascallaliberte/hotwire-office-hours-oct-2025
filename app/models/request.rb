@@ -12,6 +12,7 @@ class Request < ApplicationRecord
 
   # 🚅 add has_one associations above.
 
+  scope :updated_recently, -> { order(updated_at: :desc) }
   # 🚅 add scopes above.
 
   validates :customer, scope: true

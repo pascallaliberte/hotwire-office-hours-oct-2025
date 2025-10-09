@@ -6,7 +6,7 @@ class Team < ApplicationRecord
   # 🚅 add belongs_to associations above.
 
   has_many :customers, dependent: :destroy
-  has_many :requests, dependent: :destroy
+  has_many :requests, dependent: :destroy, enable_cable_ready_updates: true
   has_many :requests_statuses, class_name: "Requests::Status", dependent: :destroy
   # 🚅 add has_many associations above.
 
